@@ -1,6 +1,7 @@
 # Imports
 import os
 import requests as rq
+from getpass import getpass
 
 def get_kaggle_mnist(save_location=os.getcwd()):
 
@@ -8,7 +9,7 @@ def get_kaggle_mnist(save_location=os.getcwd()):
     os.chdir(save_location)
 
     kaggle_username = raw_input("Kaggle username: ")
-    kaggle_password = raw_input("Kaggle password: ")
+    kaggle_password = getpass("Kaggle password: ")
 
     kaggle_credentials = {"UserName": kaggle_username, "Password": kaggle_password}
 
@@ -32,6 +33,6 @@ def get_kaggle_mnist(save_location=os.getcwd()):
 
     print("Finished downloading all files.")
 
-get_access()
+get_kaggle_mnist()
 
 
