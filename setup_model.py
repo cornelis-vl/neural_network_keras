@@ -1,17 +1,17 @@
-#Modules
-
-import keras
-import pandas as pd
-import numpy as np
+# Imports
 import matplotlib.pyplot as plt
-from keras.utils.np_utils import to_categorical
-
+import numpy as np
+import pandas as pd
+from keras.layers import Dense
 from keras.models import Sequential
-from keras.layers import Dense , Dropout
 from keras.optimizers import RMSprop
+from keras.utils.np_utils import to_categorical
+from get_kaggle_data import get_kaggle_mnist
 
+#Download data
+get_kaggle_mnist()
 
-#Get data
+#Read data
 train = pd.read_csv("train.csv")
 test_images = pd.read_csv("test.csv").values.astype('float32')
 
