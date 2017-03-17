@@ -1,6 +1,5 @@
 # Imports
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 from keras.layers import Dense
 from keras.models import Sequential
@@ -9,7 +8,7 @@ from keras.utils.np_utils import to_categorical
 from get_kaggle_data import get_kaggle_mnist
 
 
-# Read data
+# Functions
 
 def vectorize_img_data(data):
     dim1 = data.shape[0]
@@ -71,42 +70,6 @@ def run_neural_net(features, target):
 
     return mdl, hist
 
-
-# Design neural network
-
-# fix random seed for reproducibility
-seed = 43
-np.random.seed(seed)
-
-print("Train input shape: {shape}".format(shape=train_images.shape))
-print("Train output shape: {shape}".format(shape=train_labels.shape))
-
-model = Sequential()
-model.add(Dense(32, activation='relu', input_dim=(28 * 28)))
-model.add(Dense(16, activation='relu'))
-model.add(Dense(10, activation='softmax'))
-
-# Compile network
-
-model.compile(
-    optimizer=RMSprop(lr=0.001),
-    loss='categorical_crossentropy',
-    metrics=['accuracy']
-)
-
-history = model.fit(
-    train_images,
-    train_labels,
-    validation_split=0.05,
-    nb_epoch=10,
-    batch_size=64
-)
-
-# Predict
-predictions = model.predict_classes(test_images, verbose=0)
-
-submissions = pd.DataFrame({"ImageId": list(range(1, len(predictions) + 1)),
-                            "Label": predictions})
 
 # Script
 
